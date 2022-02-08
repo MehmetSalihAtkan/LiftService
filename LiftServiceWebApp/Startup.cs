@@ -1,16 +1,14 @@
 using LiftServiceWebApp.Data;
 using LiftServiceWebApp.Models.Identity;
+using LiftServiceWebApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LiftServiceWebApp
 {
@@ -39,16 +37,15 @@ namespace LiftServiceWebApp
 
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
-
                 options.Password.RequiredLength = 5;
 
                 options.Lockout.MaxFailedAccessAttempts = 3;
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
                 options.Lockout.AllowedForNewUsers = false;
 
                 options.User.RequireUniqueEmail = true;
               
-            }).AddEntityFrameworkStores<MyContext>();
+            }).AddEntityFrameworkStores<MyContext>().AddDefaultTokenProviders();
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -60,6 +57,7 @@ namespace LiftServiceWebApp
                 options.SlidingExpiration = true;
             });
 
+            services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddControllersWithViews();
         }
