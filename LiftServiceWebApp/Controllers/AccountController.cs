@@ -263,7 +263,7 @@ namespace LiftServiceWebApp.Controllers
 
             if (user == null)
             {
-                ViewBag.Message = "Girdiğiniz email sistemimizde bulunamadı";
+                TempData["Message"] = "Girdiğiniz email sistemimizde bulunamadı";
             }
             else
             {
@@ -280,7 +280,7 @@ namespace LiftServiceWebApp.Controllers
                     Subject = "Şifre Sıfırlama"
                 };
                 await _emailSender.SendAsync(emailMessage);
-                ViewBag.Message = "Mailinize Şifre güncelleme yönergemiz gönderilmiştir";
+                TempData["Message"] = "Mailinize Şifre güncelleme yönergemiz gönderilmiştir";
             }
 
             return View();
