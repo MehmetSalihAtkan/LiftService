@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LiftService.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20220207103040_Email")]
-    partial class Email
+    [Migration("20220210104028_ETicaret")]
+    partial class ETicaret
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,170 @@ namespace LiftService.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("LiftService.Models.Entities.Address", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AddressType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedUser")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Line")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StateId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedUser")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("UserId")
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StateId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Addresses");
+                });
+
+            modelBuilder.Entity("LiftService.Models.Entities.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("LiftService.Models.Entities.State", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("States");
+                });
+
+            modelBuilder.Entity("LiftService.Models.Entities.Subscription", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedUser")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("PaidAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("SubscriptionTypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedUser")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("UserId")
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubscriptionTypeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Subscriptions");
+                });
+
+            modelBuilder.Entity("LiftService.Models.Entities.SubscriptionType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedUser")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Month")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedUser")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SubscriptionTypes");
+                });
 
             modelBuilder.Entity("LiftService.Models.Identity.ApplicationRole", b =>
                 {
@@ -232,6 +396,51 @@ namespace LiftService.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("LiftService.Models.Entities.Address", b =>
+                {
+                    b.HasOne("LiftService.Models.Entities.State", "State")
+                        .WithMany()
+                        .HasForeignKey("StateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LiftService.Models.Identity.ApplicationUser", "User")
+                        .WithMany("Addresses")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("State");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("LiftService.Models.Entities.State", b =>
+                {
+                    b.HasOne("LiftService.Models.Entities.City", "City")
+                        .WithMany("States")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
+                });
+
+            modelBuilder.Entity("LiftService.Models.Entities.Subscription", b =>
+                {
+                    b.HasOne("LiftService.Models.Entities.SubscriptionType", "SubscriptionType")
+                        .WithMany()
+                        .HasForeignKey("SubscriptionTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LiftService.Models.Identity.ApplicationUser", "User")
+                        .WithMany("Subscriptions")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("SubscriptionType");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("LiftService.Models.Identity.ApplicationRole", null)
@@ -281,6 +490,18 @@ namespace LiftService.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("LiftService.Models.Entities.City", b =>
+                {
+                    b.Navigation("States");
+                });
+
+            modelBuilder.Entity("LiftService.Models.Identity.ApplicationUser", b =>
+                {
+                    b.Navigation("Addresses");
+
+                    b.Navigation("Subscriptions");
                 });
 #pragma warning restore 612, 618
         }

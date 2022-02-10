@@ -1,5 +1,4 @@
 ﻿using Iyzipay;
-using Microsoft.Extensions.Options;
 
 namespace LiftService.Models.Payment
 {

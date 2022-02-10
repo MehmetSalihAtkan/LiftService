@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace LiftServiceWebApp.Models.Identity
+namespace LiftService.Models.Identity
 {
     public class ApplicationRole : IdentityRole
     {

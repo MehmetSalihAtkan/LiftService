@@ -1,4 +1,4 @@
-﻿using LiftServiceWebApp.Models;
+﻿using LiftService.Models;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Net;
@@ -6,7 +6,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LiftServiceWebApp.Services
+namespace LiftService.Services
 {
     public class EmailSender : IEmailSender
     {

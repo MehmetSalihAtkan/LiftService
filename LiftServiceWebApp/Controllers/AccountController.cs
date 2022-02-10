@@ -1,8 +1,8 @@
-﻿using LiftServiceWebApp.Extensions;
-using LiftServiceWebApp.Models;
-using LiftServiceWebApp.Models.Identity;
-using LiftServiceWebApp.Services;
-using LiftServiceWebApp.ViewModels;
+﻿using LiftService.Extensions;
+using LiftService.Models;
+using LiftService.Models.Identity;
+using LiftService.Services;
+using LiftService.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -13,7 +13,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
-namespace LiftServiceWebApp.Controllers
+namespace LiftService.Controllers
 {
     public class AccountController : Controller
     {

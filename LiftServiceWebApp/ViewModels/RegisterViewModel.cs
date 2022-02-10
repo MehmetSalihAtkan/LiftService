@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LiftServiceWebApp.ViewModels
+namespace LiftService.ViewModels
 {
     public class RegisterViewModel
     {

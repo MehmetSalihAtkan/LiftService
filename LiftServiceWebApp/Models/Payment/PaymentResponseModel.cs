@@ -1,4 +1,5 @@
-﻿namespace LiftService.Models.Payment
+﻿namespace LiftService
+    .Models.Payment
 {
     public class PaymentResponseModel
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LiftServiceWebApp.Models
+namespace LiftService.Models
 {
     public static class RoleNames
     {

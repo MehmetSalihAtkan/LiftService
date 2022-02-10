@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace LiftServiceWebApp.Migrations
+namespace LiftService.Migrations
 {
     public partial class Initial : Migration
     {

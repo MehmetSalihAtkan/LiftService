@@ -1,7 +1,7 @@
-﻿using LiftServiceWebApp.Models;
+﻿using LiftService.Models;
 using System.Threading.Tasks;
 
-namespace LiftServiceWebApp.Services
+namespace LiftService.Services
 {
     public interface IEmailSender
     {

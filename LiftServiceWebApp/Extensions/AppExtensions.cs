@@ -6,7 +6,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace LiftServiceWebApp.Extensions
+namespace LiftService.Extensions
 {
     public static class AppExtensions
     {

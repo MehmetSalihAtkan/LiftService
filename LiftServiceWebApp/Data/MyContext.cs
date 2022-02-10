@@ -1,12 +1,9 @@
-﻿using LiftServiceWebApp.Models.Identity;
+﻿using LiftService.Models.Entities;
+using LiftService.Models.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace LiftServiceWebApp.Data
+namespace LiftService.Data
 {
     public class MyContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -15,5 +12,10 @@ namespace LiftServiceWebApp.Data
         {
 
         }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<Subscription> Subscriptions { get; set; }
+        public DbSet<SubscriptionType> SubscriptionTypes { get; set; }
     }
 }

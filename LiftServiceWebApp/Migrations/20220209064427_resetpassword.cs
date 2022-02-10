@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace LiftServiceWebApp.Migrations
+namespace LiftService.Migrations
 {
     public partial class resetpassword : Migration
     {

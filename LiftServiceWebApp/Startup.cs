@@ -1,6 +1,6 @@
-using LiftServiceWebApp.Data;
-using LiftServiceWebApp.Models.Identity;
-using LiftServiceWebApp.Services;
+using LiftService.Data;
+using LiftService.Models.Identity;
+using LiftService.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 
-namespace LiftServiceWebApp
+namespace LiftService
 {
     public class Startup
     {

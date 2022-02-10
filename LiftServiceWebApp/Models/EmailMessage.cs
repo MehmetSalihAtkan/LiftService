@@ -1,4 +1,4 @@
-﻿namespace LiftServiceWebApp.Models
+﻿namespace LiftService.Models
 {
     public class EmailMessage
     {

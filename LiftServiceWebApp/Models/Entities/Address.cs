@@ -1,4 +1,4 @@
-﻿using LiftServiceWebApp.Models.Identity;
+﻿using LiftService.Models.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
